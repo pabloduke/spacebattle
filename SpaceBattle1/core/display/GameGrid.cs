@@ -3,8 +3,8 @@ using SFML.System;
 
 namespace SpaceBattle1.core.display;
 
-public class DrawGrid {
-    public static void execute(RenderWindow window) {
+public class GameGrid {
+    public static void Draw(RenderWindow window) {
         for (int x = 0; x < GameContext.WIDTH; x++) {
             
             window.DispatchEvents(); // Process events

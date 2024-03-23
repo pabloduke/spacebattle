@@ -1,14 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.Loader;
-using Microsoft.Extensions.Logging;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using SpaceBattle1.core;
 using SpaceBattle1.core.display;
 using SpaceBattle1.core.mouse;
+using static SpaceBattle1.core.GameContext;
 
 
 class Program {
@@ -16,7 +14,7 @@ class Program {
         // ILogger log = LoggerFactory.Create().CreateLogger("Main");
         Console.WriteLine("Initializing");
         int width = 1200;
-        int height = 800;
+        int height = 1000;
         int cellSize = 100;
         GameContext gameContext = GameContext.getInstance();
         ClickResolver clickResolver = new GameGridClickResolver(width, height, cellSize);
@@ -43,7 +41,9 @@ class Program {
         window.Draw(nebulaSprite);
         window.Draw(shipASprite);
 
-        DrawGrid.execute(window);
+        GameGrid.Draw(window);
+        MainMenu.Draw(window);
+
 
         Console.WriteLine("Initialization Complete");
         
@@ -79,9 +79,9 @@ class Program {
     private static void OnMouseButtonPressed(object sender, MouseButtonEventArgs e) {
         if (e.Button == Mouse.Button.Left) {
             Boolean toggleState = GameContext.getInstance().getLeftButtonClickedInd();
-            GameContext.getInstance().setLeftButtonClickedInd(!toggleState);
-            GameContext.getInstance().MouseClickX = e.X;
-            GameContext.getInstance().MouseClickY = e.Y;
+            getInstance().setLeftButtonClickedInd(!toggleState);
+            getInstance().MouseClickX = e.X;
+            getInstance().MouseClickY = e.Y;
             
             Console.WriteLine("TOGGLE STATE FLIPPED TO-> " + !toggleState);
         }

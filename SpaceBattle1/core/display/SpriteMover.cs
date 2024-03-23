@@ -7,25 +7,6 @@ namespace SpaceBattle1.core;
 public class SpriteMover {
     public static void execute(
         RenderWindow window, 
-        Sprite shipASprite, 
-        Sprite nebulaSprite
-        ) {
-        window.DispatchEvents();
-
-        float sx = shipASprite.Position.X;
-        for (float x = sx; x < sx + 100; x += 1) {
-            window.DispatchEvents();
-            shipASprite.Position = new Vector2f(x, shipASprite.Position.Y);
-            window.Draw(nebulaSprite);
-            
-            window.Draw(shipASprite);
-            DrawGrid.execute(window);
-            window.Display();
-        }
-    }
-    
-    public static void execute(
-        RenderWindow window, 
         Sprite sprite, 
         Sprite backgroundSprite,
         Tuple<int, int> from,
@@ -36,8 +17,8 @@ public class SpriteMover {
         Tuple<int, int> slope = getSlope(from, to);
         float rise = slope.Item2;
         float run = slope.Item1;
-        int xFinal = to.Item1 * 100;
-        int yFinal = to.Item2 * 100;
+        int xFinal = to.Item1 * GameContext.CELL_SIZE;
+        int yFinal = to.Item2 * GameContext.CELL_SIZE;
         while (sprite.Position.X != xFinal || sprite.Position.Y != yFinal) {
             window.DispatchEvents();
 
@@ -50,7 +31,7 @@ public class SpriteMover {
             }
             
             window.Draw(backgroundSprite);
-            DrawGrid.execute(window);
+            GameGrid.Draw(window);
             window.Draw(sprite);
             window.Display();
         }
