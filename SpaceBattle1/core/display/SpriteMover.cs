@@ -32,6 +32,7 @@ public class SpriteMover {
             
             window.Draw(backgroundSprite);
             GameGrid.Draw(window);
+            MainMenu.Draw(window);
             window.Draw(sprite);
             window.Display();
         }
