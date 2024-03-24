@@ -6,6 +6,10 @@ using SFML.Window;
 using SpaceBattle1.core;
 using SpaceBattle1.core.display;
 using SpaceBattle1.core.mouse;
+using SpaceBattle1.core.ship;
+using SpaceBattle1.core.ship.engine.impl;
+using SpaceBattle1.core.ship.hull.impl;
+using SpaceBattle1.core.ship.weapon.beam.impl;
 using static SpaceBattle1.core.GameContext;
 
 
@@ -36,10 +40,18 @@ class Program {
         Sprite nebulaSprite = new Sprite(nebulaTexture);
         Sprite shipASprite = new Sprite(ship_a_texture);
         shipASprite.Position = new Vector2f(shipX, shipY);
+
+        SpaceShip enterprise = SpaceShip.CreateShip(
+            "Enterprise",
+            new MediumHull(new Laser(), new Laser()),
+            new Nuclear(),
+            shipASprite
+        );
+        
         window.MouseButtonPressed += OnMouseButtonPressed;
         // shipASprite.TextureRect = new IntRect(0, 0, 100, 100);
         window.Draw(nebulaSprite);
-        window.Draw(shipASprite);
+        window.Draw(enterprise.Sprite);
 
         GameGrid.Draw(window);
         MainMenu.Draw(window);
@@ -53,13 +65,11 @@ class Program {
         while (window.IsOpen) {
             window.DispatchEvents();
             if (gameContext.getLeftButtonClickedInd()) {
-                Console.WriteLine("PREV COOR:");
                 Tuple<int, int> from = new Tuple<int, int>(
                     clickResolver.getCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item1,
                     clickResolver.getCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item2
                 );
                 
-                Console.WriteLine("NEW COOR");
                 Tuple<int, int> to = new Tuple<int, int>(
                     clickResolver.getCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item1,
                     clickResolver.getCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item2
@@ -68,7 +78,7 @@ class Program {
                 gameContext.setLeftButtonClickedInd(false);
                 SpriteMover.execute(
                     window,
-                    shipASprite,
+                    enterprise,
                     nebulaSprite,
                     from,
                     to
@@ -82,8 +92,6 @@ class Program {
             getInstance().setLeftButtonClickedInd(!toggleState);
             getInstance().MouseClickX = e.X;
             getInstance().MouseClickY = e.Y;
-            
-            Console.WriteLine("TOGGLE STATE FLIPPED TO-> " + !toggleState);
         }
     }
 }

@@ -15,7 +15,6 @@ public class GameGrid {
             rectangleShape.OutlineColor = Color.Blue;
             rectangleShape.FillColor = Color.Blue;
             window.Draw(rectangleShape);
-           
         }
 
         for (int y = 0; y < GameContext.HEIGHT; y++) {

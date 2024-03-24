@@ -15,9 +15,7 @@ public class GameGridClickResolver : ClickResolver {
     public Tuple<int, int> getCoor(int mouseX, int mouseY) {
         int xCor = mouseX / cellSize;
         int yCor = mouseY / cellSize;
-
-        Console.WriteLine($"XCLICK:{xCor}");
-        Console.WriteLine($"YCLICK:{yCor}");
+        
         return new Tuple<int, int>(xCor, yCor);
     }
 }
