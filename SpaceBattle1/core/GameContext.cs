@@ -1,4 +1,6 @@
-﻿namespace SpaceBattle1.core;
+﻿using SFML.Window;
+
+namespace SpaceBattle1.core;
 
 public class GameContext {
     public int MouseClickX {
@@ -31,6 +33,8 @@ public class GameContext {
     private int _mouseClickY;
     private int _prevMouseClickX;
     private int _prevMouseClickY;
+    
+    public Keyboard.Key Keypress { get; set; }
 
     private GameContext() {
         this._leftButtonClickedInd = false;

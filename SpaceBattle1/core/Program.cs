@@ -49,6 +49,8 @@ class Program {
         );
         
         window.MouseButtonPressed += OnMouseButtonPressed;
+        window.KeyPressed += OnKeyPress;
+        
         // shipASprite.TextureRect = new IntRect(0, 0, 100, 100);
         window.Draw(nebulaSprite);
         window.Draw(enterprise.Sprite);
@@ -84,6 +86,11 @@ class Program {
                     to
                 );
             }
+
+            if (gameContext.Keypress == Keyboard.Key.Num1 || gameContext.Keypress == Keyboard.Key.Numpad1) {
+                Console.WriteLine("ATTACK!!!!");
+                gameContext.Keypress = Keyboard.Key.Unknown;
+            }
         }
     }
     private static void OnMouseButtonPressed(object sender, MouseButtonEventArgs e) {
@@ -93,5 +100,10 @@ class Program {
             getInstance().MouseClickX = e.X;
             getInstance().MouseClickY = e.Y;
         }
+    }
+
+    private static void OnKeyPress(object sender, KeyEventArgs e) {
+        Console.WriteLine($"You pressed {e.Code}");
+        GameContext.getInstance().Keypress = e.Code;
     }
 }
