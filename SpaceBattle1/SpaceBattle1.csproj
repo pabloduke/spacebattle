@@ -18,7 +18,18 @@
       <Folder Include="core\ship\weapon\impl\" />
       <Folder Include="font\" />
       <Folder Include="images\" />
-      <Folder Include="logs\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="logs\**" />
     </ItemGroup>
 
 </Project>

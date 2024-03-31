@@ -62,13 +62,6 @@ class Program {
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
         
-        // window.Draw(nebulaSprite);
-        // window.Draw(enterprise.Sprite);
-        // window.Draw(enemyShip.Sprite);
-        //
-        // GameGrid.Draw(window);
-        // MainMenu.Draw(window);
-        
         ScreenDrawer.Execute(window, ships, nebulaSprite);
         
         log.Info("Initialization Complete");
