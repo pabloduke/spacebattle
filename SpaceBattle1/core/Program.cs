@@ -45,12 +45,24 @@ class Program {
             new Nuclear(),
             shipASprite
         );
+        
+        Texture ship_b_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\enemyship.png");
+        Sprite shipBSprite = new Sprite(ship_b_texture);
+        shipBSprite.Position = new Vector2f(800, 500);
+
+        SpaceShip enemyShip = SpaceShip.CreateShip(
+            "Enemy Ship",
+            new MediumHull(new Laser(), new Laser()),
+            new Nuclear(),
+            shipBSprite
+        );
 
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
         
         window.Draw(nebulaSprite);
         window.Draw(enterprise.Sprite);
+        window.Draw(enemyShip.Sprite);
         GameGrid.Draw(window);
         MainMenu.Draw(window);
         
