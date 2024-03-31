@@ -1,8 +1,10 @@
-﻿using SpaceBattle1.core.mouse;
+﻿using NLog;
+using SpaceBattle1.core.mouse;
 
 namespace SpaceBattle1.core;
 
 public class GameGridGridResolver : GridResolver {
+    private static Logger log = LogManager.GetCurrentClassLogger();
     private readonly int width;
     private readonly int height;
     private readonly int cellSize;
@@ -23,7 +25,7 @@ public class GameGridGridResolver : GridResolver {
         int xCor = gridX * cellSize;
         int yCor = gridY * cellSize;
     
-        Console.WriteLine($"FINAL COOR: ({xCor}, {yCor})");
+        log.Info($"FINAL COOR: ({xCor}, {yCor})");
         return new Tuple<int, int>(xCor, yCor);
     }
 }

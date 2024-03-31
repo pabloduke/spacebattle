@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿using NLog;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -14,9 +13,11 @@ using static SpaceBattle1.core.GameContext;
 
 
 class Program {
+    private static Logger log = LogManager.GetCurrentClassLogger();
+
     static void Main(string[] args) {
         // ILogger log = LoggerFactory.Create().CreateLogger("Main");
-        Console.WriteLine("Initializing");
+        log.Info("Initializing");
         int width = 1200;
         int height = 1000;
         int cellSize = 100;
@@ -53,7 +54,7 @@ class Program {
         GameGrid.Draw(window);
         MainMenu.Draw(window);
         
-        Console.WriteLine("Initialization Complete");
+        log.Info("Initialization Complete");
         
         window.Display();
 
@@ -84,7 +85,7 @@ class Program {
             }
 
             if (gameContext.Keypress == Keyboard.Key.Num1 || gameContext.Keypress == Keyboard.Key.Numpad1) {
-                Console.WriteLine("ATTACK!!!!");
+                log.Info("ATTACK!!!!");
                 gameContext.Keypress = Keyboard.Key.Unknown;
             }
         }
@@ -99,7 +100,7 @@ class Program {
     }
 
     private static void OnKeyPress(object sender, KeyEventArgs e) {
-        Console.WriteLine($"You pressed {e.Code}");
+        log.Info($"You pressed {e.Code}");
         GameContext.getInstance().Keypress = e.Code;
     }
 }
