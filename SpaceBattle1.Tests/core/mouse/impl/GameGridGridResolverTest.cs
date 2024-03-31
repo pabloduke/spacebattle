@@ -7,9 +7,9 @@ using SpaceBattle1.core.mouse;
 namespace SpaceBattle1.Tests.core.mouse.impl;
 
 [TestClass]
-[TestSubject(typeof(GameGridClickResolver))]
-public class GameGridClickResolverTest {
-    private readonly ClickResolver _clickResolver = new GameGridClickResolver(1200,800,100);
+[TestSubject(typeof(GameGridGridResolver))]
+public class GameGridGridResolverTest {
+    private readonly GridResolver _gridResolver = new GameGridGridResolver(1200,800,100);
     
     
     [DataTestMethod]
@@ -18,7 +18,7 @@ public class GameGridClickResolverTest {
     [DataRow(0, 0, 0, 0)]
     [DataRow(1199, 799, 11, 7)] // Edge case
     public void TestGridLocationIsCorrectlyResolved(int x, int y, int expectedX, int expectedY) {
-        Tuple<int, int> coor = _clickResolver.getCoor(x, y);
+        Tuple<int, int> coor = _gridResolver.getGridCoor(x, y);
         Console.WriteLine($"Expecting: (mouseX{x}, mouseY{y}) -> ({expectedX}, {expectedY})");
         Assert.AreEqual(expectedX, coor.Item1, $"X coordinate is incorrect for input ({x},{y})");
         Assert.AreEqual(expectedY, coor.Item2, $"Y coordinate is incorrect for input ({x},{y})");

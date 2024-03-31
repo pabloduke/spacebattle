@@ -21,10 +21,7 @@ class Program {
         int height = 1000;
         int cellSize = 100;
         GameContext gameContext = GameContext.getInstance();
-        ClickResolver clickResolver = new GameGridClickResolver(width, height, cellSize);
-
-        int totalCols = width / cellSize;
-        int totalRows = height / cellSize;
+        GridResolver gridResolver = new GameGridGridResolver(width, height, cellSize);
         
         int shipX = 0;
         int shipY = 100;
@@ -47,18 +44,15 @@ class Program {
             new Nuclear(),
             shipASprite
         );
-        
+
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
         
-        // shipASprite.TextureRect = new IntRect(0, 0, 100, 100);
         window.Draw(nebulaSprite);
         window.Draw(enterprise.Sprite);
-
         GameGrid.Draw(window);
         MainMenu.Draw(window);
-
-
+        
         Console.WriteLine("Initialization Complete");
         
         window.Display();
@@ -67,14 +61,17 @@ class Program {
         while (window.IsOpen) {
             window.DispatchEvents();
             if (gameContext.getLeftButtonClickedInd()) {
+                
+                
+                //I think this is wrong.  It should be the ship's current location, not the previous click.
                 Tuple<int, int> from = new Tuple<int, int>(
-                    clickResolver.getCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item1,
-                    clickResolver.getCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item2
+                    gridResolver.getGridCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item1,
+                    gridResolver.getGridCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item2
                 );
                 
-                Tuple<int, int> to = new Tuple<int, int>(
-                    clickResolver.getCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item1,
-                    clickResolver.getCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item2
+                Tuple<int, int> clickedCell = new Tuple<int, int>(
+                    gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item1,
+                    gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item2
                 );
                 
                 gameContext.setLeftButtonClickedInd(false);
@@ -82,8 +79,7 @@ class Program {
                     window,
                     enterprise,
                     nebulaSprite,
-                    from,
-                    to
+                    clickedCell
                 );
             }
 
