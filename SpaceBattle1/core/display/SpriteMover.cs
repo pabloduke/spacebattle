@@ -12,10 +12,12 @@ public class SpriteMover {
     public static void execute(
         RenderWindow window,
         SpaceShip ship,
+        List<SpaceShip> ships,
         Sprite backgroundSprite,
         // Tuple<int, int> from,
         Tuple<int, int> to
     ) {
+        log.Info($"Moving Sprite {ship.Name}");
         GridResolver gridResolver = new GameGridGridResolver(GameContext.WIDTH, GameContext.HEIGHT, GameContext.CELL_SIZE);
         
         Tuple<int, int> from = new Tuple<int, int>(
@@ -27,7 +29,7 @@ public class SpriteMover {
         log.Info($"Move {ship.Name} Sprite To: ({to.Item1}, {to.Item2})");
         window.DispatchEvents();
         
-        Tuple<int, int> slope = getSlope(from, to);
+        Tuple<int, int> slope = GetSlope(from, to);
         float rise = slope.Item2;
         float run = slope.Item1;
 
@@ -49,11 +51,8 @@ public class SpriteMover {
                 );
             }
 
-            window.Draw(backgroundSprite);
-            GameGrid.Draw(window);
-            MainMenu.Draw(window);
-            window.Draw(ship.Sprite);
-            window.Display();
+            ScreenDrawer.Execute(window, ships, backgroundSprite);
+
             currentLoc = gridResolver.getGridCoor((int) ship.Sprite.Position.X, (int) ship.Sprite.Position.Y);
             log.Trace($"CurrentX: {currentLoc.Item1}, CurrentY: {currentLoc.Item2}");
         }
@@ -70,14 +69,12 @@ public class SpriteMover {
             ).Item2
         );
         
-        window.Draw(backgroundSprite);
-        GameGrid.Draw(window);
-        MainMenu.Draw(window);
-        window.Draw(ship.Sprite);
-        window.Display();
+        ScreenDrawer.Execute(window, ships, backgroundSprite);
+
+        log.Info($"Completed Moving Sprite {ship.Name}");
     }
 
-    private static Tuple<int, int> getSlope(
+    private static Tuple<int, int> GetSlope(
         Tuple<int, int> from,
         Tuple<int, int> to
     ) {

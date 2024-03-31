@@ -16,7 +16,6 @@ class Program {
     private static Logger log = LogManager.GetCurrentClassLogger();
 
     static void Main(string[] args) {
-        // ILogger log = LoggerFactory.Create().CreateLogger("Main");
         log.Info("Initializing");
         int width = 1200;
         int height = 1000;
@@ -57,31 +56,27 @@ class Program {
             shipBSprite
         );
 
+        List<SpaceShip> ships = new List<SpaceShip>();
+        ships.Add(enterprise);
+        ships.Add(enemyShip);
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
         
-        window.Draw(nebulaSprite);
-        window.Draw(enterprise.Sprite);
-        window.Draw(enemyShip.Sprite);
-        GameGrid.Draw(window);
-        MainMenu.Draw(window);
+        // window.Draw(nebulaSprite);
+        // window.Draw(enterprise.Sprite);
+        // window.Draw(enemyShip.Sprite);
+        //
+        // GameGrid.Draw(window);
+        // MainMenu.Draw(window);
+        
+        ScreenDrawer.Execute(window, ships, nebulaSprite);
         
         log.Info("Initialization Complete");
         
-        window.Display();
-
-        //MAIN GAME LOOP
+       //MAIN GAME LOOP
         while (window.IsOpen) {
             window.DispatchEvents();
             if (gameContext.getLeftButtonClickedInd()) {
-                
-                
-                //I think this is wrong.  It should be the ship's current location, not the previous click.
-                Tuple<int, int> from = new Tuple<int, int>(
-                    gridResolver.getGridCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item1,
-                    gridResolver.getGridCoor(gameContext.PrevMouseClickX, gameContext.PrevMouseClickY).Item2
-                );
-                
                 Tuple<int, int> clickedCell = new Tuple<int, int>(
                     gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item1,
                     gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item2
@@ -91,6 +86,7 @@ class Program {
                 SpriteMover.execute(
                     window,
                     enterprise,
+                    ships,
                     nebulaSprite,
                     clickedCell
                 );
