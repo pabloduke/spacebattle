@@ -15,7 +15,7 @@ public static class ScreenDrawer {
         log.Debug("Drawing Screen Started");
         window.Draw(backgroundSprite);
         GameGridDrawer.Draw(window);
-        MainMenu.Draw(window);
+        MainMenuDrawer.Draw(window);
 
         foreach (SpaceShip ship in ships) {
             window.Draw(ship.Sprite);

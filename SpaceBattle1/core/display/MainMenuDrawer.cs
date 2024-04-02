@@ -4,7 +4,7 @@ using SFML.System;
 
 namespace SpaceBattle1.core.display;
 
-public class MainMenu {
+public class MainMenuDrawer {
     public static void Draw(RenderWindow window) {
         RectangleShape mainMenu = new RectangleShape(new Vector2f(1190, 195));
         mainMenu.Position = new Vector2f(5, 795);
