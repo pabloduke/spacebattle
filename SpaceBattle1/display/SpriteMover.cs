@@ -18,11 +18,10 @@ public class SpriteMover {
         Tuple<int, int> to
     ) {
         log.Info($"Moving Sprite {ship.Name}");
-        GridResolver gridResolver = new GameGridGridResolver(GameContext.WIDTH, GameContext.HEIGHT, GameContext.CELL_SIZE);
         
         Tuple<int, int> from = new Tuple<int, int>(
-            gridResolver.getGridCoor((int)ship.Sprite.Position.X, (int)ship.Sprite.Position.Y).Item1,
-            gridResolver.getGridCoor((int)ship.Sprite.Position.X, (int)ship.Sprite.Position.Y).Item2
+            GameGridGridResolver.getGridCoor((int)ship.Sprite.Position.X, (int)ship.Sprite.Position.Y).Item1,
+            GameGridGridResolver.getGridCoor((int)ship.Sprite.Position.X, (int)ship.Sprite.Position.Y).Item2
         );
         
         log.Info($"Move {ship.Name} Sprite From: ({from.Item1}, {from.Item2})");
@@ -33,7 +32,7 @@ public class SpriteMover {
         float rise = slope.Item2;
         float run = slope.Item1;
 
-        Tuple<int, int> currentLoc = gridResolver.getGridCoor((int) ship.Sprite.Position.X, (int) ship.Sprite.Position.Y);
+        Tuple<int, int> currentLoc = GameGridGridResolver.getGridCoor((int) ship.Sprite.Position.X, (int) ship.Sprite.Position.Y);
         while (currentLoc.Item1 != to.Item1 || currentLoc.Item2 != to.Item2) {
             window.DispatchEvents();
             
@@ -53,17 +52,17 @@ public class SpriteMover {
 
             ScreenDrawer.Execute(window, ships, backgroundSprite);
 
-            currentLoc = gridResolver.getGridCoor((int) ship.Sprite.Position.X, (int) ship.Sprite.Position.Y);
+            currentLoc = GameGridGridResolver.getGridCoor((int) ship.Sprite.Position.X, (int) ship.Sprite.Position.Y);
             log.Trace($"CurrentX: {currentLoc.Item1}, CurrentY: {currentLoc.Item2}");
         }
 
         ship.Sprite.Position = new Vector2f(
-            gridResolver.getScreenCoor(
+            GameGridGridResolver.getScreenCoor(
                 to.Item1,
                 to.Item2
             ).Item1,
             
-            gridResolver.getScreenCoor(
+            GameGridGridResolver.getScreenCoor(
                 to.Item1,
                 to.Item2
             ).Item2

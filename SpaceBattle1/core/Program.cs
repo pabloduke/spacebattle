@@ -4,7 +4,6 @@ using SFML.System;
 using SFML.Window;
 using SpaceBattle1.core;
 using SpaceBattle1.core.display;
-using SpaceBattle1.core.mouse;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.core.ship.engine.impl;
 using SpaceBattle1.core.ship.hull.impl;
@@ -20,8 +19,6 @@ class Program {
         int width = 1200;
         int height = 1000;
         int cellSize = 100;
-        GameContext gameContext = GameContext.getInstance();
-        GridResolver gridResolver = new GameGridGridResolver(width, height, cellSize);
         
         int shipX = 0;
         int shipY = 100;
@@ -37,12 +34,13 @@ class Program {
         Sprite nebulaSprite = new Sprite(nebulaTexture);
         Sprite shipASprite = new Sprite(ship_a_texture);
         shipASprite.Position = new Vector2f(shipX, shipY);
-
+    
         SpaceShip enterprise = SpaceShip.CreateShip(
             "Enterprise",
             new MediumHull(new Laser(), new Laser()),
             new Nuclear(),
-            shipASprite
+            shipASprite,
+            new Tuple<int, int>(1, 1)
         );
         
         Texture ship_b_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\enemyship.png");
@@ -53,7 +51,8 @@ class Program {
             "Enemy Ship",
             new MediumHull(new Laser(), new Laser()),
             new Nuclear(),
-            shipBSprite
+            shipBSprite,
+            new Tuple<int, int>(8, 5)
         );
 
         List<SpaceShip> ships = new List<SpaceShip>();
@@ -69,13 +68,13 @@ class Program {
        //MAIN GAME LOOP
         while (window.IsOpen) {
             window.DispatchEvents();
-            if (gameContext.getLeftButtonClickedInd()) {
+            if (GameContext.getInstance().getLeftButtonClickedInd()) {
                 Tuple<int, int> clickedCell = new Tuple<int, int>(
-                    gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item1,
-                    gridResolver.getGridCoor(gameContext.MouseClickX, gameContext.MouseClickY).Item2
+                    GameGridGridResolver.getGridCoor(GameContext.getInstance().MouseClickX, GameContext.getInstance().MouseClickY).Item1,
+                    GameGridGridResolver.getGridCoor(GameContext.getInstance().MouseClickX, GameContext.getInstance().MouseClickY).Item2
                 );
                 
-                gameContext.setLeftButtonClickedInd(false);
+                GameContext.getInstance().setLeftButtonClickedInd(false);
                 SpriteMover.execute(
                     window,
                     enterprise,
@@ -85,9 +84,9 @@ class Program {
                 );
             }
 
-            if (gameContext.Keypress == Keyboard.Key.Num1 || gameContext.Keypress == Keyboard.Key.Numpad1) {
+            if (GameContext.getInstance().Keypress == Keyboard.Key.Num1 || GameContext.getInstance().Keypress == Keyboard.Key.Numpad1) {
                 log.Info("ATTACK!!!!");
-                gameContext.Keypress = Keyboard.Key.Unknown;
+                GameContext.getInstance().Keypress = Keyboard.Key.Unknown;
             }
         }
     }

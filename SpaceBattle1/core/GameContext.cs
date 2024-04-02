@@ -1,4 +1,6 @@
 ﻿using SFML.Window;
+using SpaceBattle1.core.data;
+using SpaceBattle1.core.ship;
 
 namespace SpaceBattle1.core;
 
@@ -19,6 +21,8 @@ public class GameContext {
         }
         
     }
+    
+    public BattleGrid BattleGrid { get; set; }
 
     public int PrevMouseClickX => _prevMouseClickX;
     public int PrevMouseClickY => _prevMouseClickY;

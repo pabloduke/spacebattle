@@ -7,6 +7,6 @@
 	<s:Boolean x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/ShowAdvancedOptions/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e9e22d72_002D285d_002D49f1_002D9446_002D1ab688aa034a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GameGridClickResolverTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;MSTest::B44C0886-E2F9-4DF2-9785-89178F62B2F4::net8.0::SpaceBattle1.Tests.core.mouse.impl.GameGridClickResolverTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::B44C0886-E2F9-4DF2-9785-89178F62B2F4::net8.0::SpaceBattle1.Tests.core.mouse.impl.GameGridGridResolverTest.TestGridLocationIsCorrectlyResolved&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
