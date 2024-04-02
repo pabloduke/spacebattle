@@ -3,6 +3,7 @@ using SFML.Graphics;
 using SFML.Window;
 using SpaceBattle1.core;
 using SpaceBattle1.core.display;
+using SpaceBattle1.core.init;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.core.ship.engine.impl;
 using SpaceBattle1.core.ship.hull.impl;
@@ -21,32 +22,12 @@ class Program {
         window.Closed += (sender, e) => ((Window)sender).Close();
         
         Texture nebulaTexture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\alt_nebula.jpg");
-        Texture ship_a_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\nx01.png");
         Sprite nebulaSprite = new Sprite(nebulaTexture);
-        Sprite shipASprite = new Sprite(ship_a_texture);
-    
-        SpaceShip enterprise = SpaceShip.CreateShip(
-            "Enterprise",
-            new MediumHull(new Laser(), new Laser()),
-            new Nuclear(),
-            shipASprite,
-            new Tuple<int, int>(1, 1)
-        );
-        
-        Texture ship_b_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\enemyship.png");
-        Sprite shipBSprite = new Sprite(ship_b_texture);
-        
-        SpaceShip enemyShip = SpaceShip.CreateShip(
-            "Enemy Ship",
-            new MediumHull(new Laser(), new Laser()),
-            new Nuclear(),
-            shipBSprite,
-            new Tuple<int, int>(8, 5)
-        );
 
-        List<SpaceShip> ships = new List<SpaceShip>();
-        ships.Add(enterprise);
-        ships.Add(enemyShip);
+        List<SpaceShip> playerShips = SpaceShipInitializer.InitPlayerShips();
+        List<SpaceShip> enemyShips = SpaceShipInitializer.InitEnemyShips();
+        List<SpaceShip> ships = playerShips.Concat(enemyShips).ToList();
+
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
         
@@ -66,7 +47,7 @@ class Program {
                 getInstance().setLeftButtonClickedInd(false);
                 SpriteMover.execute(
                     window,
-                    enterprise,
+                    playerShips[0],
                     ships,
                     nebulaSprite,
                     clickedCell

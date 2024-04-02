@@ -2,7 +2,6 @@
 using SFML.Graphics;
 using SFML.System;
 using SpaceBattle1.core.display;
-using SpaceBattle1.core.mouse;
 using SpaceBattle1.core.ship;
 
 namespace SpaceBattle1.core;
@@ -70,6 +69,7 @@ public class SpriteMover {
         
         ScreenDrawer.Execute(window, ships, backgroundSprite);
 
+        ship.Location = to;
         log.Info($"Completed Moving Sprite {ship.Name}");
     }
 
