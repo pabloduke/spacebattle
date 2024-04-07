@@ -2,12 +2,9 @@
 using SFML.Graphics;
 using SFML.Window;
 using SpaceBattle1.core;
+using SpaceBattle1.core.data;
 using SpaceBattle1.core.display;
-using SpaceBattle1.core.init;
 using SpaceBattle1.core.ship;
-using SpaceBattle1.core.ship.engine.impl;
-using SpaceBattle1.core.ship.hull.impl;
-using SpaceBattle1.core.ship.weapon.beam.impl;
 using static SpaceBattle1.core.GameContext;
 
 
@@ -16,7 +13,7 @@ class Program {
 
     static void Main(string[] args) {
         log.Info("Initializing");
-
+        BattleGrid battleGrid = BattleGrid.GetInstance();
         RenderWindow window = new RenderWindow(new VideoMode((uint)WIDTH, (uint)HEIGHT), "Space Battle");
         window.SetFramerateLimit(60);
         window.Closed += (sender, e) => ((Window)sender).Close();
@@ -24,9 +21,10 @@ class Program {
         Texture nebulaTexture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\alt_nebula.jpg");
         Sprite nebulaSprite = new Sprite(nebulaTexture);
 
-        List<SpaceShip> playerShips = SpaceShipInitializer.InitPlayerShips();
-        List<SpaceShip> enemyShips = SpaceShipInitializer.InitEnemyShips();
-        List<SpaceShip> ships = playerShips.Concat(enemyShips).ToList();
+        PlayerFleet playerFleet = new PlayerFleet();
+        EnemyFleet enemyFleet = new EnemyFleet();
+        
+        List<SpaceShip> ships = playerFleet.Concat(enemyFleet).ToList();
 
         window.MouseButtonPressed += OnMouseButtonPressed;
         window.KeyPressed += OnKeyPress;
@@ -45,13 +43,19 @@ class Program {
                 );
                 
                 getInstance().setLeftButtonClickedInd(false);
-                SpriteMover.execute(
-                    window,
-                    playerShips[0],
-                    ships,
-                    nebulaSprite,
-                    clickedCell
-                );
+                if (battleGrid.isEmpty(clickedCell)) {
+                    SpriteMover.execute(
+                        window,
+                        playerFleet[0],
+                        ships,
+                        nebulaSprite,
+                        clickedCell
+                    );
+                }
+                else {
+                    log.Info("That location is occupied");
+                }
+
             }
 
             if (getInstance().Keypress == Keyboard.Key.Num1 || getInstance().Keypress == Keyboard.Key.Numpad1) {

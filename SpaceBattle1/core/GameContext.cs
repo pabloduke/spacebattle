@@ -28,7 +28,7 @@ public class GameContext {
     public int PrevMouseClickY => _prevMouseClickY;
     
     public static readonly int  WIDTH = 1200;
-    public static readonly int  HEIGHT = 800;
+    public static readonly int  HEIGHT = 1000;
     public static readonly int  CELL_SIZE = 100;
 
     private static GameContext _instance;
