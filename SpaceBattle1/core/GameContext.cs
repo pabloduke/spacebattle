@@ -7,25 +7,15 @@ namespace SpaceBattle1.core;
 public class GameContext {
     public int MouseClickX {
         get => _mouseClickX;
-        set {
-            _prevMouseClickX = _mouseClickX;
-            _mouseClickX = value;
-        }
+        set => _mouseClickX = value;
     }
 
     public int MouseClickY {
         get => _mouseClickY;
-        set {
-            _prevMouseClickY = _mouseClickY;
-            _mouseClickY = value;
-        }
-        
+        set => _mouseClickY = value;
     }
     
-    public BattleGrid BattleGrid { get; set; }
-
-    public int PrevMouseClickX => _prevMouseClickX;
-    public int PrevMouseClickY => _prevMouseClickY;
+    private GameState _gameState;
     
     public static readonly int  WIDTH = 1200;
     public static readonly int  HEIGHT = 1000;
@@ -35,13 +25,13 @@ public class GameContext {
     private Boolean _leftButtonClickedInd;
     private int _mouseClickX;
     private int _mouseClickY;
-    private int _prevMouseClickX;
-    private int _prevMouseClickY;
     
     public Keyboard.Key Keypress { get; set; }
 
     private GameContext() {
         this._leftButtonClickedInd = false;
+        _gameState = new GameState();
+
     }
 
     public static GameContext getInstance() {
@@ -58,5 +48,25 @@ public class GameContext {
 
     public void setLeftButtonClickedInd(Boolean flag) {
         _leftButtonClickedInd = flag;
+    }
+
+    public void BeginAttack() {
+        if (!_gameState.IsAttack) {
+            _gameState.IsAttack = true;
+        }
+    }
+
+    public void EndAttack() {
+        if (_gameState.IsAttack) {
+            _gameState.IsAttack = false;
+        }
+    }
+
+    public bool IsAttack() {
+        return _gameState.IsAttack;
+    }
+
+    private class GameState {
+        public bool IsAttack { get; set; }
     }
 }

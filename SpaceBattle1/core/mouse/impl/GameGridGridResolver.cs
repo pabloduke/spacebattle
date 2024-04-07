@@ -1,5 +1,4 @@
 ﻿using NLog;
-using SpaceBattle1.core.mouse;
 
 namespace SpaceBattle1.core;
 
