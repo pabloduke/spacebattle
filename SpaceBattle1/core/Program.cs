@@ -5,7 +5,7 @@ using SpaceBattle1.core;
 using SpaceBattle1.core.data;
 using SpaceBattle1.core.display;
 using SpaceBattle1.core.ship;
-using static SpaceBattle1.core.GameContext;
+using static SpaceBattle1.core.GlobalGameContext;
 using KeyEvent = SpaceBattle1.core.KeyEvent;
 
 
@@ -28,7 +28,7 @@ class Program {
 
         List<SpaceShip> ships = playerFleet.Concat(enemyFleet).ToList();
 
-        window.MouseButtonPressed += MouseEvent.OnLeftMouseButtonPressed;
+        window.MouseButtonPressed += new MouseEvent().OnLeftMouseButtonPressed;
         window.KeyPressed += KeyEvent.OnKeyPress;
 
         ScreenDrawer.Execute(window, ships, nebulaSprite);

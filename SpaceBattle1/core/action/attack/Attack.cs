@@ -9,7 +9,7 @@ public class Attack {
 
     public void Execute(RenderWindow window, SpaceShip attackingShip) {
         window.KeyPressed += AttackOnKeyPress;
-        while (GameContext.getInstance().IsAttack()) {
+        while (GlobalGameContext.getInstance().IsAttack()) {
             window.DispatchEvents();
         }
     }

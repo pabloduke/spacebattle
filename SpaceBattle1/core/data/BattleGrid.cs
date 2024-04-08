@@ -39,7 +39,7 @@ public class BattleGrid {
     }
     
     private SpaceShip[,] InitShipLocations(PlayerFleet playerFleet, EnemyFleet enemyFleet) {
-        SpaceShip[,] battleGrid = new SpaceShip[GameContext.HEIGHT, GameContext.WIDTH];
+        SpaceShip[,] battleGrid = new SpaceShip[GlobalGameContext.HEIGHT, GlobalGameContext.WIDTH];
         foreach (SpaceShip ship in playerFleet) {
             battleGrid[ship.Location.Item1, ship.Location.Item2] = ship;
         }

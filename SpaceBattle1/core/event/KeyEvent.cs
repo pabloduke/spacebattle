@@ -8,13 +8,13 @@ public class KeyEvent {
     
     public static void OnKeyPress(object sender, KeyEventArgs e) {
         log.Info($"You pressed {e.Code}");
-        GameContext.getInstance().Keypress = e.Code;
-        if (GameContext.getInstance().Keypress == Keyboard.Key.Num1 || GameContext.getInstance().Keypress == Keyboard.Key.Numpad1) {
-            if (!GameContext.getInstance().IsAttack()) {
-                GameContext.getInstance().BeginAttack();
+        GlobalGameContext.getInstance().Keypress = e.Code;
+        if (GlobalGameContext.getInstance().Keypress == Keyboard.Key.Num1 || GlobalGameContext.getInstance().Keypress == Keyboard.Key.Numpad1) {
+            if (!GlobalGameContext.getInstance().IsAttack()) {
+                GlobalGameContext.getInstance().BeginAttack();
             }
             else {
-                GameContext.getInstance().EndAttack();
+                GlobalGameContext.getInstance().EndAttack();
             }
         }
     }

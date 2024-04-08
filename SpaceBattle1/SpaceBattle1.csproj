@@ -22,6 +22,10 @@
 
     <ItemGroup>
       <Compile Remove="logs\**" />
+      <Compile Remove="core\event\IGameMouseEvent.cs" />
+      <Compile Remove="core\action\move\SelectPlayerShip.cs" />
+      <Compile Remove="core\action\attack\AttackMouseEvent.cs" />
+      <Compile Remove="core\action\attack\AttackKeyEvent.cs" />
     </ItemGroup>
 
     <ItemGroup>

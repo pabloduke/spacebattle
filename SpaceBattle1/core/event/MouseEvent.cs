@@ -3,12 +3,12 @@
 namespace SpaceBattle1.core;
 
 public class MouseEvent {
-    public static void OnLeftMouseButtonPressed(object sender, MouseButtonEventArgs e) {
+    public void OnLeftMouseButtonPressed(object sender, MouseButtonEventArgs e) {
         if (e.Button == Mouse.Button.Left) {
-            Boolean toggleState = GameContext.getInstance().getLeftButtonClickedInd();
-            GameContext.getInstance().setLeftButtonClickedInd(!toggleState);
-            GameContext.getInstance().MouseClickX = e.X;
-            GameContext.getInstance().MouseClickY = e.Y;
+            Boolean toggleState = GlobalGameContext.getInstance().getLeftButtonClickedInd();
+            GlobalGameContext.getInstance().setLeftButtonClickedInd(!toggleState);
+            GlobalGameContext.getInstance().MouseClickX = e.X;
+            GlobalGameContext.getInstance().MouseClickY = e.Y;
         }
     }
 }
