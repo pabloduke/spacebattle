@@ -1,10 +1,20 @@
-﻿using SFML.Window;
+﻿using NLog;
+using SFML.Graphics;
+using SFML.Window;
 using SpaceBattle1.core.data;
+using SpaceBattle1.core.gamestate;
 using SpaceBattle1.core.ship;
 
 namespace SpaceBattle1.core;
 
 public class GlobalGameContext {
+    private static Logger log = LogManager.GetCurrentClassLogger();
+    
+    public Sprite BackGroundSprite { get; set; }
+    public PlayerFleet PlayerFleet;
+    public EnemyFleet EnemyFleet;
+    public List<SpaceShip> Ships { get; set; }
+    public RenderWindow Window { get; set; }
     public int MouseClickX {
         get => _mouseClickX;
         set => _mouseClickX = value;
@@ -14,7 +24,11 @@ public class GlobalGameContext {
         get => _mouseClickY;
         set => _mouseClickY = value;
     }
-    
+
+    public Tuple<int, int> CursorLoc { get; set; }
+    public GameState GetGameState() {
+        return _gameState;
+    }
     private GameState _gameState;
     
     public static readonly int  WIDTH = 1200;
@@ -29,9 +43,11 @@ public class GlobalGameContext {
     public Keyboard.Key Keypress { get; set; }
 
     private GlobalGameContext() {
+        PlayerFleet = new PlayerFleet();
+        EnemyFleet = new EnemyFleet();
+        Ships = PlayerFleet.Concat(EnemyFleet).ToList();
+        SetGameStateIdle();
         this._leftButtonClickedInd = false;
-        _gameState = new GameState();
-
     }
 
     public static GlobalGameContext getInstance() {
@@ -50,23 +66,18 @@ public class GlobalGameContext {
         _leftButtonClickedInd = flag;
     }
 
-    public void BeginAttack() {
-        if (!_gameState.IsAttack) {
-            _gameState.IsAttack = true;
-        }
+    public void SetGameStateIdle() {
+        log.Info("SETTING GAMESTATE TO IDLE");
+        _gameState = GameState.IDLE;
     }
 
-    public void EndAttack() {
-        if (_gameState.IsAttack) {
-            _gameState.IsAttack = false;
-        }
+    public void SetGameStateAttack() {
+        log.Info("SETTING GAMESTATE TO ATTACK");
+        _gameState = GameState.ATTACK;
     }
-
-    public bool IsAttack() {
-        return _gameState.IsAttack;
-    }
-
-    private class GameState {
-        public bool IsAttack { get; set; }
+    
+    public void SetGameStateMove() {
+        log.Info("SETTING GAMESTATE TO MOVE");
+        _gameState = GameState.MOVE;
     }
 }
