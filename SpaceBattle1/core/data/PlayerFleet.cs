@@ -1,6 +1,7 @@
 ﻿using NLog;
 using SFML.Graphics;
 using SpaceBattle1.core.ship;
+using SpaceBattle1.core.ship.armor.impl;
 using SpaceBattle1.core.ship.engine.impl;
 using SpaceBattle1.core.ship.hull.impl;
 using SpaceBattle1.core.ship.weapon.beam.impl;
@@ -25,6 +26,7 @@ public class PlayerFleet : List<SpaceShip> {
         SpaceShip enterprise = SpaceShip.CreateShip(
             "Enterprise",
             new MediumHull(new Laser(), new Laser()),
+            new TitaniumArmor(),
             new Nuclear(),
             shipASprite,
             new Tuple<int, int>(1, 1)

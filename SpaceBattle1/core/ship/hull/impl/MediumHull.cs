@@ -17,4 +17,8 @@ public record MediumHull : IHull {
     public int GetSize() {
         return 75;
     }
+    
+    public int GetBaseHitPoints() {
+        return 75;
+    }
 }

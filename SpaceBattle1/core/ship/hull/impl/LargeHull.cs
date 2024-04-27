@@ -20,4 +20,8 @@ public struct LargeHull : IHull {
     public int GetSize() {
         return 100;
     }
+
+    public int GetBaseHitPoints() {
+        return 100;
+    }
 }

@@ -14,4 +14,8 @@ public record SmallHull : IHull {
     public int GetSize() {
         return 20;
     }
+    
+    public int GetBaseHitPoints() {
+        return 50;
+    }
 }

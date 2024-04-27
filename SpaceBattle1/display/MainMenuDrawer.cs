@@ -46,6 +46,27 @@ public class MainMenuDrawer {
                 text.FillColor = Color.Green;
                 text.Position = new Vector2f(200, 810);
                 window.Draw(text);
+                
+                Text shipEngine = new Text("Ship Engines: " + ship.Engine.GetName(), font);
+                shipEngine.FillColor = Color.Green;
+                shipEngine.Position = new Vector2f(200, 850);
+                window.Draw(shipEngine);
+                
+                Text shipHull = new Text("Ship Hull: " + ship.Hull.GetName(), font);
+                shipHull.FillColor = Color.Green;
+                shipHull.Position = new Vector2f(200, 890);
+                window.Draw(shipHull);
+                
+                Text hpText = new Text("Ship Hit Points: " + ship.HitPoints, font);
+                hpText.FillColor = Color.Green;
+                hpText.Position = new Vector2f(650, 810);
+                window.Draw(hpText);
+                
+                Text armorText = new Text("Ship Armor: " + ship.Armor.GetName(), font);
+                armorText.FillColor = Color.Green;
+                armorText.Position = new Vector2f(650, 850);
+                window.Draw(armorText);
+                
             }  
         }
     }

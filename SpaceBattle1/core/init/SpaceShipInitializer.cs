@@ -1,6 +1,7 @@
 ﻿using NLog;
 using SFML.Graphics;
 using SpaceBattle1.core.ship;
+using SpaceBattle1.core.ship.armor.impl;
 using SpaceBattle1.core.ship.engine.impl;
 using SpaceBattle1.core.ship.hull.impl;
 using SpaceBattle1.core.ship.weapon.beam.impl;
@@ -18,6 +19,7 @@ public class SpaceShipInitializer {
         SpaceShip enterprise = SpaceShip.CreateShip(
             "Enterprise",
             new MediumHull(new Laser(), new Laser()),
+            new TitaniumArmor(),
             new Nuclear(),
             shipASprite,
             new Tuple<int, int>(1, 1)
@@ -36,6 +38,7 @@ public class SpaceShipInitializer {
         SpaceShip enemyShip = SpaceShip.CreateShip(
             "Enemy Ship",
             new MediumHull(new Laser(), new Laser()),
+            new TitaniumArmor(),
             new Nuclear(),
             shipBSprite,
             new Tuple<int, int>(8, 5)

@@ -3,4 +3,5 @@
 public interface IHull {
     String GetName();
     int GetSize();
+    int GetBaseHitPoints();
 }
