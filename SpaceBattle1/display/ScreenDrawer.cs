@@ -1,6 +1,7 @@
 ﻿using NLog;
 using SFML.Graphics;
 using SFML.System;
+using SpaceBattle1.core.data;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.display;
 
@@ -36,11 +37,20 @@ public static class ScreenDrawer {
             float y = gridCoor.Item2 * GlobalGameContext.CELL_SIZE;
             RectangleShape rectangleShape = new RectangleShape(new Vector2f(GlobalGameContext.CELL_SIZE, GlobalGameContext.CELL_SIZE));
             rectangleShape.Position = new Vector2f(x, y);
-            rectangleShape.OutlineColor = new Color(10, 10, 200, 128);
-            rectangleShape.FillColor = new Color(10, 10, 200, 128);
+            
+            Color tileColor = getTileColor(gridCoor);
+            rectangleShape.OutlineColor = tileColor;
+            rectangleShape.FillColor = tileColor;
         
             GlobalGameContext.getInstance().Window.Draw(rectangleShape);
         }
-
+    }
+    
+    private static Color getTileColor(Tuple<int, int> gridCoor) {
+        if (BattleGrid.GetInstance().GetShiptAtLocation(gridCoor) == null) {
+            return new Color(10, 10, 200, 128);
+        }
+        
+        return new Color(200, 10, 10, 175);
     }
 }
