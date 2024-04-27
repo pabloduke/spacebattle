@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 
 namespace SpaceBattle1.core.display;
@@ -11,8 +10,6 @@ public class MainMenuDrawer {
         mainMenu.FillColor = Color.Black;
         mainMenu.OutlineColor = Color.Green;
         mainMenu.OutlineThickness = 5;
-        
-        // Font font = new Font("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\font\\Roboto-Black.ttf");
         
         window.Draw(mainMenu);
         Font menuFont = GlobalGameContext.getInstance().MenuFont;
