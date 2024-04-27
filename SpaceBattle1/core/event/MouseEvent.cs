@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using NLog;
+using NLog.Fluent;
 using SFML.Window;
 using SpaceBattle1.display;
 
@@ -19,21 +20,14 @@ public class MouseEvent {
     }
 
     public void OnMouseEntered(object sender, MouseMoveEventArgs e) {
-        _stopwatch.Stop();
-        long elapsedTime = _stopwatch.ElapsedMilliseconds;
-
-        if (elapsedTime > 100) {
             GlobalGameContext.getInstance().Window.DispatchEvents();
             Tuple<int, int> gridCoor = GameGridGridResolver.getGridCoor(e.X, e.Y);
         
             GlobalGameContext.getInstance().CursorLoc = gridCoor;
             // log.Info($"Highlite tile {gridCoor.Item1}, {gridCoor.Item2}");
         }
-        
-        _stopwatch.Start();
-
     }
-}
+
 
  struct GameTick {
     public long Tick { get; set; }

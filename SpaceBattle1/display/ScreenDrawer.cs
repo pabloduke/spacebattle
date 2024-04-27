@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 using SpaceBattle1.core.data;
+using SpaceBattle1.core.gamestate;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.display;
 
@@ -32,7 +33,7 @@ public static class ScreenDrawer {
     public static void highliteTile() {
         Tuple<int, int> gridCoor = GlobalGameContext.getInstance().CursorLoc;
 
-        if (gridCoor != null) {
+        if (GlobalGameContext.getInstance().GetGameState() == GameState.MOVE && gridCoor != null) {
             float x = gridCoor.Item1 * GlobalGameContext.CELL_SIZE;
             float y = gridCoor.Item2 * GlobalGameContext.CELL_SIZE;
             RectangleShape rectangleShape = new RectangleShape(new Vector2f(GlobalGameContext.CELL_SIZE, GlobalGameContext.CELL_SIZE));
