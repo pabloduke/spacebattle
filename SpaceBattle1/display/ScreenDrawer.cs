@@ -32,7 +32,7 @@ public static class ScreenDrawer {
 
     public static void highliteTile() {
         Tuple<int, int> gridCoor = GlobalGameContext.getInstance().CursorLoc;
-
+        
         if (GlobalGameContext.getInstance().GetGameState() == GameState.MOVE && gridCoor != null) {
             float x = gridCoor.Item1 * GlobalGameContext.CELL_SIZE;
             float y = gridCoor.Item2 * GlobalGameContext.CELL_SIZE;
@@ -48,7 +48,8 @@ public static class ScreenDrawer {
     }
     
     private static Color getTileColor(Tuple<int, int> gridCoor) {
-        if (BattleGrid.GetInstance().GetShiptAtLocation(gridCoor) == null) {
+        SpaceShip ship = BattleGrid.GetInstance().GetShiptAtLocation(gridCoor);
+        if (ship == null) {
             return new Color(10, 10, 200, 128);
         }
         

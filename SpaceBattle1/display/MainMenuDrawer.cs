@@ -1,5 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using SpaceBattle1.core.data;
+using SpaceBattle1.core.ship;
 
 namespace SpaceBattle1.core.display;
 
@@ -16,6 +18,7 @@ public class MainMenuDrawer {
         Text attackText = new Text("2. Attack", menuFont);
         drawMoveMenuText(window, menuFont, mainMenu);
         drawAttackMenuText(window, menuFont, mainMenu);
+        drawShipInfo(window, menuFont);
     }
 
     private static void drawMoveMenuText(RenderWindow window, Font font, RectangleShape mainMenu) {
@@ -30,5 +33,21 @@ public class MainMenuDrawer {
         text.FillColor = Color.Green;
         text.Position = new Vector2f(10, 850);
         window.Draw(text);
+    }
+    
+    private static void drawShipInfo(RenderWindow window, Font font) {
+        Tuple<int, int> gridCoor = GlobalGameContext.getInstance().CursorLoc;
+
+        if (gridCoor != null) {
+            SpaceShip ship = BattleGrid.GetInstance().GetShiptAtLocation(gridCoor);
+
+            if (ship != null) {
+                Text text = new Text("Ship Name: " + ship.Name, font);
+                text.FillColor = Color.Green;
+                text.Position = new Vector2f(200, 810);
+                window.Draw(text);
+            }  
+        }
+        
     }
 }
