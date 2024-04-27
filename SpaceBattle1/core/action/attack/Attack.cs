@@ -2,6 +2,7 @@
 using SpaceBattle1.core.data;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.core.ship.weapon;
+using SpaceBattle1.display;
 
 namespace SpaceBattle1.core.action.attack;
 
@@ -21,6 +22,7 @@ public static class Attack {
             int attackDmg = Math.Max(weapon.GetPower() - ship.Armor.GetBaseDefense(), 0);
             log.Info($"{weapon.GetName()} did {attackDmg} damage to {ship.Name}");
 
+            AttackAnimator.execute(weapon, attackingShip.Location, cellToAttack);
             ship.HitPoints = Math.Max(ship.HitPoints - attackDmg, 0);
             if (ship.HitPoints == 0) {
                 log.Info($"{ship.Name} has been destroyed!");
@@ -29,6 +31,4 @@ public static class Attack {
             GlobalGameContext.getInstance().SetGameStateIdle();
         }
     }
-
-
 }

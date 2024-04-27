@@ -8,6 +8,7 @@ public static class GameGridDrawer {
         foreach (RectangleShape shape in GlobalGameContext.getInstance().Grid) {
             window.DispatchEvents();
             window.Draw(shape);
+            
         }
     }
 }
