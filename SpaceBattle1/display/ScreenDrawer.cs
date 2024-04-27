@@ -19,7 +19,7 @@ public static class ScreenDrawer {
         window.Draw(backgroundSprite);
         GameGridDrawer.Draw(window);
         MainMenuDrawer.Draw(window);
-        // highliteTile(GlobalGameContext.getInstance().CursorLoc);
+        highliteTile();
         foreach (SpaceShip ship in ships) {
             window.Draw(ship.Sprite);
         }
@@ -28,16 +28,19 @@ public static class ScreenDrawer {
         log.Debug("Drawing Screen Completed");
     }
 
-    public static void highliteTile(Tuple<int, int> gridCoor) {
-        GlobalGameContext.getInstance().Window.DispatchEvents();
-        float x = gridCoor.Item1 * GlobalGameContext.CELL_SIZE;
-        float y = gridCoor.Item2 * GlobalGameContext.CELL_SIZE;
-        RectangleShape rectangleShape = new RectangleShape(new Vector2f(GlobalGameContext.CELL_SIZE, GlobalGameContext.CELL_SIZE));
-        rectangleShape.Position = new Vector2f(x, y);
-        rectangleShape.OutlineColor = new Color(10, 10, 200, 128);
-        rectangleShape.FillColor = new Color(10, 10, 200, 128);
+    public static void highliteTile() {
+        Tuple<int, int> gridCoor = GlobalGameContext.getInstance().CursorLoc;
+
+        if (gridCoor != null) {
+            float x = gridCoor.Item1 * GlobalGameContext.CELL_SIZE;
+            float y = gridCoor.Item2 * GlobalGameContext.CELL_SIZE;
+            RectangleShape rectangleShape = new RectangleShape(new Vector2f(GlobalGameContext.CELL_SIZE, GlobalGameContext.CELL_SIZE));
+            rectangleShape.Position = new Vector2f(x, y);
+            rectangleShape.OutlineColor = new Color(10, 10, 200, 128);
+            rectangleShape.FillColor = new Color(10, 10, 200, 128);
         
-        GlobalGameContext.getInstance().Window.Draw(rectangleShape);
-        
+            GlobalGameContext.getInstance().Window.Draw(rectangleShape);
+        }
+
     }
 }
