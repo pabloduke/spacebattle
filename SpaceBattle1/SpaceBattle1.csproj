@@ -14,7 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="core\action\move\" />
       <Folder Include="core\ship\weapon\impl\" />
       <Folder Include="font\" />
       <Folder Include="images\" />

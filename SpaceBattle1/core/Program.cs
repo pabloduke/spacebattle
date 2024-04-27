@@ -1,7 +1,10 @@
-﻿using NLog;
+﻿using System.Diagnostics;
+using NLog;
 using SFML.Graphics;
 using SFML.Window;
 using SpaceBattle1.core;
+using SpaceBattle1.core.action.attack;
+using SpaceBattle1.core.action.move;
 using SpaceBattle1.core.data;
 using SpaceBattle1.core.display;
 using SpaceBattle1.core.gamestate;
@@ -58,26 +61,9 @@ class Program {
 
                 getInstance().setLeftButtonClickedInd(false);
 
-                if (getInstance().GetGameState() == GameState.MOVE) {
-                    if (battleGrid.isEmpty(clickedCell)) {
-                        SpriteMover.execute(
-                            window,
-                            getInstance().PlayerFleet[0],
-                            getInstance().Ships,
-                            nebulaSprite,
-                            clickedCell
-                        );
-
-                        getInstance().SetGameStateIdle();
-                    }
-                    else {
-                        log.Info("That location is occupied");
-                    }
-                }
-
-                if ((getInstance().GetGameState() == GameState.ATTACK)) {
-                    log.Info("ATTACK!!!!");
-                    getInstance().Keypress = Keyboard.Key.Unknown;
+                switch(getInstance().GetGameState()) {
+                    case GameState.MOVE: MoveSpaceShip.execute(clickedCell); break;
+                    case GameState.ATTACK: Attack.execute(); break;
                 }
             }
         }

@@ -8,4 +8,8 @@ public class TitaniumArmor : IArmor {
     public int GetBaseHitPoints() {
         return 50;
     }
+
+    public double GetBaseDefense() {
+        return 10.0;
+    }
 }

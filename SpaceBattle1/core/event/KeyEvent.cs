@@ -1,4 +1,5 @@
 ﻿using NLog;
+using NLog.Fluent;
 using SFML.Window;
 
 namespace SpaceBattle1.core.@event;
@@ -22,7 +23,10 @@ public static class KeyEvent {
                 break;
             
             case Keyboard.Key.Q: Environment.Exit(0);
+                log.Info("Quitting Game, Goodbye!");
                 break;
         }
+        
+        GlobalGameContext.getInstance().Keypress = Keyboard.Key.Unknown;
     }
 }

@@ -3,4 +3,5 @@
 public interface IArmor {
     String GetName();
     int GetBaseHitPoints();
+    double GetBaseDefense();
 }
