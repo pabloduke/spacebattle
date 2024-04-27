@@ -6,6 +6,7 @@ using SpaceBattle1.core.data;
 using SpaceBattle1.core.display;
 using SpaceBattle1.core.gamestate;
 using SpaceBattle1.core.ship;
+using SpaceBattle1.display;
 using static SpaceBattle1.core.GlobalGameContext;
 using KeyEvent = SpaceBattle1.core.KeyEvent;
 
@@ -31,6 +32,7 @@ class Program {
         //
         // List<SpaceShip> ships = playerFleet.Concat(enemyFleet).ToList();
 
+        GameGridInitializer.init();
         window.MouseButtonPressed += new MouseEvent().OnLeftMouseButtonPressed;
         window.MouseMoved += new MouseEvent().OnMouseEntered;
         window.KeyPressed += KeyEvent.OnKeyPress;

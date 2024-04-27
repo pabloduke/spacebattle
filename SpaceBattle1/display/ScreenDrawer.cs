@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 using SpaceBattle1.core.ship;
+using SpaceBattle1.display;
 
 namespace SpaceBattle1.core.display;
 
@@ -18,7 +19,7 @@ public static class ScreenDrawer {
         window.Draw(backgroundSprite);
         GameGridDrawer.Draw(window);
         MainMenuDrawer.Draw(window);
-        highliteTile(GlobalGameContext.getInstance().CursorLoc);
+        // highliteTile(GlobalGameContext.getInstance().CursorLoc);
         foreach (SpaceShip ship in ships) {
             window.Draw(ship.Sprite);
         }

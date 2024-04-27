@@ -11,12 +11,14 @@ public class MainMenuDrawer {
         mainMenu.FillColor = Color.Black;
         mainMenu.OutlineColor = Color.Green;
         mainMenu.OutlineThickness = 5;
-
-        Font font = new Font("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\font\\Roboto-Black.ttf");
-        Text attackText = new Text("2. Attack", font);
+        
+        // Font font = new Font("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\font\\Roboto-Black.ttf");
+        
         window.Draw(mainMenu);
-        drawMoveMenuText(window, font, mainMenu);
-        drawAttackMenuText(window, font, mainMenu);
+        Font menuFont = GlobalGameContext.getInstance().MenuFont;
+        Text attackText = new Text("2. Attack", menuFont);
+        drawMoveMenuText(window, menuFont, mainMenu);
+        drawAttackMenuText(window, menuFont, mainMenu);
     }
 
     private static void drawMoveMenuText(RenderWindow window, Font font, RectangleShape mainMenu) {

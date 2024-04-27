@@ -9,12 +9,14 @@ namespace SpaceBattle1.core;
 
 public class GlobalGameContext {
     private static Logger log = LogManager.GetCurrentClassLogger();
-    
+    public List<RectangleShape> Grid { get; set; }
     public Sprite BackGroundSprite { get; set; }
     public PlayerFleet PlayerFleet;
     public EnemyFleet EnemyFleet;
     public List<SpaceShip> Ships { get; set; }
     public RenderWindow Window { get; set; }
+    
+    public Font MenuFont { get; }
     public int MouseClickX {
         get => _mouseClickX;
         set => _mouseClickX = value;
@@ -48,6 +50,7 @@ public class GlobalGameContext {
         Ships = PlayerFleet.Concat(EnemyFleet).ToList();
         SetGameStateIdle();
         this._leftButtonClickedInd = false;
+        MenuFont = new Font("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\font\\Roboto-Black.ttf");
     }
 
     public static GlobalGameContext getInstance() {
