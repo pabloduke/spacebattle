@@ -62,8 +62,8 @@ class Program {
                 getInstance().setLeftButtonClickedInd(false);
 
                 switch(getInstance().GetGameState()) {
-                    case GameState.MOVE: MoveSpaceShip.execute(clickedCell); break;
-                    case GameState.ATTACK: Attack.execute(); break;
+                    case GameState.MOVE: MoveSpaceShip.execute(getInstance().Ships[0], clickedCell); break;
+                    case GameState.ATTACK: Attack.execute(getInstance().Ships[0], clickedCell); break;
                 }
             }
         }

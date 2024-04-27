@@ -1,5 +1,6 @@
 ﻿using NLog;
 using SpaceBattle1.core.data;
+using SpaceBattle1.core.ship;
 
 namespace SpaceBattle1.core.action.move;
 
@@ -11,11 +12,11 @@ namespace SpaceBattle1.core.action.move;
 public static class MoveSpaceShip {
     private static Logger log = LogManager.GetCurrentClassLogger();
     
-    public static void execute(Tuple<int, int> moveToCell) {
+    public static void execute(SpaceShip movingShip, Tuple<int, int> moveToCell) {
         if (BattleGrid.GetInstance().isEmpty(moveToCell)) {
             SpriteMover.execute(
                 GlobalGameContext.getInstance().Window,
-                GlobalGameContext.getInstance().PlayerFleet[0],
+                movingShip,
                 GlobalGameContext.getInstance().Ships,
                 GlobalGameContext.getInstance().BackGroundSprite,
                 moveToCell

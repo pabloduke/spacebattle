@@ -22,8 +22,7 @@ public static class KeyEvent {
             case Keyboard.Key.Escape: GlobalGameContext.getInstance().SetGameStateIdle();
                 break;
             
-            case Keyboard.Key.Q: Environment.Exit(0);
-                log.Info("Quitting Game, Goodbye!");
+            case Keyboard.Key.Q: log.Info("Quitting Game, Goodbye!"); Environment.Exit(0);
                 break;
         }
         

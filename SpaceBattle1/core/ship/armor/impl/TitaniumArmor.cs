@@ -9,7 +9,7 @@ public class TitaniumArmor : IArmor {
         return 50;
     }
 
-    public double GetBaseDefense() {
-        return 10.0;
+    public int GetBaseDefense() {
+        return 5;
     }
 }

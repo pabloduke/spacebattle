@@ -9,7 +9,6 @@ namespace SpaceBattle1.core.ship;
 public class SpaceShip {
     public String Name { get; }
     public IHull Hull { get; }
-
     public IArmor Armor {get;}
     public IEngine Engine { get; }
     public int HitPoints { get; set; }
