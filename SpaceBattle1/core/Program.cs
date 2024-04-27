@@ -8,7 +8,7 @@ using SpaceBattle1.core.gamestate;
 using SpaceBattle1.core.ship;
 using SpaceBattle1.display;
 using static SpaceBattle1.core.GlobalGameContext;
-using KeyEvent = SpaceBattle1.core.KeyEvent;
+using KeyEvent = SpaceBattle1.core.@event.KeyEvent;
 
 
 class Program {

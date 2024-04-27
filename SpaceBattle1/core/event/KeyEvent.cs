@@ -1,10 +1,9 @@
 ﻿using NLog;
 using SFML.Window;
-using SpaceBattle1.core.gamestate;
 
-namespace SpaceBattle1.core;
+namespace SpaceBattle1.core.@event;
 
-public class KeyEvent {
+public static class KeyEvent {
     private static Logger log = LogManager.GetCurrentClassLogger();
     
     public static void OnKeyPress(object sender, KeyEventArgs e) {
@@ -20,6 +19,9 @@ public class KeyEvent {
                 break;
             
             case Keyboard.Key.Escape: GlobalGameContext.getInstance().SetGameStateIdle();
+                break;
+            
+            case Keyboard.Key.Q: Environment.Exit(0);
                 break;
         }
     }
