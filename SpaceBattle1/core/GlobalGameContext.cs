@@ -35,7 +35,7 @@ public class GlobalGameContext {
     
     public static readonly int  WIDTH = 1200;
     public static readonly int  HEIGHT = 1000;
-    public static readonly int  CELL_SIZE = 100;
+    public static readonly int  CELL_SIZE = 50;
 
     private static GlobalGameContext _instance;
     private Boolean _leftButtonClickedInd;

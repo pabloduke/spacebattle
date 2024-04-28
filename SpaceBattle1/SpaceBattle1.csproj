@@ -16,7 +16,6 @@
     <ItemGroup>
       <Folder Include="core\ship\weapon\impl\" />
       <Folder Include="font\" />
-      <Folder Include="images\" />
     </ItemGroup>
 
     <ItemGroup>

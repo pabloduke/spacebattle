@@ -20,7 +20,7 @@ public class PlayerFleet : List<SpaceShip> {
 
     private SpaceShip InitEnterprise() {
         log.Info("Initializing Player Ships");
-        Texture ship_a_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\nx01.png");
+        Texture ship_a_texture = new Texture("C:\\Users\\steph\\RiderProjects\\SpaceBattle1\\SpaceBattle1\\images\\swan.png");
         Sprite shipASprite = new Sprite(ship_a_texture);
     
         SpaceShip enterprise = SpaceShip.CreateShip(
